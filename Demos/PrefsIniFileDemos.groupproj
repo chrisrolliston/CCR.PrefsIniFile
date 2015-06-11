@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{338A3C09-4514-4BFD-92F3-62115BF38FB7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Desktop\DesktopPrefsDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Mobile\MobilePrefs.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DesktopPrefsDemo">
+        <MSBuild Projects="Desktop\DesktopPrefsDemo.dproj"/>
+    </Target>
+    <Target Name="DesktopPrefsDemo:Clean">
+        <MSBuild Projects="Desktop\DesktopPrefsDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DesktopPrefsDemo:Make">
+        <MSBuild Projects="Desktop\DesktopPrefsDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MobilePrefs">
+        <MSBuild Projects="Mobile\MobilePrefs.dproj"/>
+    </Target>
+    <Target Name="MobilePrefs:Clean">
+        <MSBuild Projects="Mobile\MobilePrefs.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MobilePrefs:Make">
+        <MSBuild Projects="Mobile\MobilePrefs.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DesktopPrefsDemo;MobilePrefs"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DesktopPrefsDemo:Clean;MobilePrefs:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DesktopPrefsDemo:Make;MobilePrefs:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
